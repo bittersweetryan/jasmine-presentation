@@ -35,12 +35,14 @@
 /* line 45, granite.scss */
 .deck-container .slide pre {
   border-color: #ccc;
+  background-color: #FFF;
+  padding: .5em;
 }
-/* line 49, granite.scss */
+/* line 51, granite.scss */
 .deck-container .slide code {
   color: #888;
 }
-/* line 53, granite.scss */
+/* line 55, granite.scss */
 .deck-container .slide blockquote {
   font-size: 2em;
   font-style: italic;
@@ -48,79 +50,79 @@
   color: #000;
   border-left: 5px solid #ccc;
 }
-/* line 60, granite.scss */
+/* line 62, granite.scss */
 .deck-container .slide blockquote p {
   margin: 0;
 }
-/* line 64, granite.scss */
+/* line 66, granite.scss */
 .deck-container .slide blockquote cite {
   font-size: .5em;
   font-style: normal;
   font-weight: bold;
   color: #888;
 }
-/* line 72, granite.scss */
+/* line 74, granite.scss */
 .deck-container .slide ::-moz-selection {
   background: #c00;
   color: #fff;
 }
-/* line 73, granite.scss */
+/* line 75, granite.scss */
 .deck-container .slide ::selection {
   background: #c00;
   color: #fff;
 }
-/* line 76, granite.scss */
+/* line 78, granite.scss */
 .deck-container .slide a, .deck-container .slide a:hover, .deck-container .slide a:focus, .deck-container .slide a:active, .deck-container .slide a:visited {
   color: #c00;
   text-decoration: none;
 }
-/* line 81, granite.scss */
+/* line 83, granite.scss */
 .deck-container .slide a:hover, .deck-container .slide a:focus {
   text-decoration: underline;
 }
-/* line 86, granite.scss */
+/* line 88, granite.scss */
 .deck-container .slide pre {
   border-radius: 10px;
 }
-/* line 92, granite.scss */
+/* line 94, granite.scss */
 .deck-container > .slide .deck-before, .deck-container > .slide .deck-previous {
   opacity: 0.4;
 }
-/* line 96, granite.scss */
+/* line 98, granite.scss */
 .deck-container > .slide .deck-before:not(.deck-child-current) .deck-before, .deck-container > .slide .deck-before:not(.deck-child-current) .deck-previous, .deck-container > .slide .deck-previous:not(.deck-child-current) .deck-before, .deck-container > .slide .deck-previous:not(.deck-child-current) .deck-previous {
   opacity: 1;
 }
-/* line 102, granite.scss */
+/* line 104, granite.scss */
 .deck-container > .slide .deck-child-current {
   opacity: 1;
 }
-/* line 107, granite.scss */
+/* line 109, granite.scss */
 .deck-container .deck-prev-link, .deck-container .deck-next-link {
   background: #ccc;
   font-family: serif;
 }
-/* line 111, granite.scss */
+/* line 113, granite.scss */
 .deck-container .deck-prev-link, .deck-container .deck-prev-link:hover, .deck-container .deck-prev-link:focus, .deck-container .deck-prev-link:active, .deck-container .deck-prev-link:visited, .deck-container .deck-next-link, .deck-container .deck-next-link:hover, .deck-container .deck-next-link:focus, .deck-container .deck-next-link:active, .deck-container .deck-next-link:visited {
   color: #fff;
 }
-/* line 115, granite.scss */
+/* line 117, granite.scss */
 .deck-container .deck-prev-link:hover, .deck-container .deck-prev-link:focus, .deck-container .deck-next-link:hover, .deck-container .deck-next-link:focus {
   background: #c00;
   text-decoration: none;
 }
-/* line 121, granite.scss */
+/* line 123, granite.scss */
 .deck-container .deck-status {
   font-size: 0.6666em;
 }
-/* line 126, granite.scss */
+/* line 128, granite.scss */
 .deck-container.deck-menu .slide {
   background: #eee;
 }
-/* line 130, granite.scss */
+/* line 132, granite.scss */
 .deck-container.deck-menu .deck-current, .no-touch .deck-container.deck-menu .slide:hover {
   background: #ddf;
 }
-/* line 135, granite.scss */
+/* line 137, granite.scss */
 .deck-container .attn-box {
   height: 60%;
   width: 60%;
@@ -129,7 +131,7 @@
   border-radius: 16px;
   box-shadow: 10px 20px 12px rgba(0, 0, 0, 0.6);
 }
-/* line 143, granite.scss */
+/* line 145, granite.scss */
 .deck-container .attn-box p {
   font-size: 1.7em;
 }

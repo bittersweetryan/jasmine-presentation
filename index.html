@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=1024, user-scalable=no">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
 
-	<title>Your deck.js Presentation</title>
-	
-	<!-- Required stylesheet -->
-	<link rel="stylesheet" href="core/deck.core.css">
-	
-	<!-- Extension CSS files go here. Remove or add as needed. -->
-	<link rel="stylesheet" href="extensions/goto/deck.goto.css">
-	<link rel="stylesheet" href="extensions/menu/deck.menu.css">
-	<link rel="stylesheet" href="extensions/navigation/deck.navigation.css">
-	<link rel="stylesheet" href="extensions/status/deck.status.css">
-	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
-	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
-    <link href="rainbow/themes/solarized-light.css" rel="stylesheet" type="text/css">
+  <title>Unit Testing JavaScript With Jasmine</title>
+  
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" href="core/deck.core.css">
+  
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" href="extensions/goto/deck.goto.css">
+  <link rel="stylesheet" href="extensions/menu/deck.menu.css">
+  <link rel="stylesheet" href="extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" href="extensions/status/deck.status.css">
+  <link rel="stylesheet" href="extensions/hash/deck.hash.css">
+  <link rel="stylesheet" href="extensions/scale/deck.scale.css">
+    <link href="google-code-prettify/src/prettify.css" type="text/css" rel="stylesheet" />
+
     
-	<!-- Style theme. More available in /themes/style/ or create your own. -->
-	<link rel="stylesheet" href="themes/style/granite.css">
-	
-	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
-	<link rel="stylesheet" href="themes/transition/horizontal-slide.css">
-	
-	<!-- Required Modernizr file -->
-	<script src="modernizr.custom.js"></script>
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" href="themes/style/granite.css">
+  
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" href="themes/transition/horizontal-slide.css">
+  
+  <!-- Required Modernizr file -->
+  <script src="modernizr.custom.js"></script>
 </head>
 <body class="deck-container">
 
@@ -40,6 +41,7 @@
         <h2>What we'll cover</h2>    
         <ul>
             <li>Intro to BDD</li>
+            <li>Writing Testable JS Code</li>
             <li>Setup</li>
             <li>Jasmine Matchers</li>
             <li>Jasmine jQuery</li>
@@ -56,19 +58,19 @@
         
     <section class="slide">
         <h2>Intro to BDD Continued...</h2>
-    <pre><code data-language="javascript">//describe your code
-    describe ( 'presentation.js' , function(){
-        
-        //what it should do
-        it ( 'should be informative', function(){}
-            
-            //expect something 
-            expect( 
-                presentation.inform() 
-            ).toBeTruthy();
-        );
-    } );</code></pre>
-        <p>Note how <code data-language="javascript">describe + it</code> reads like a sentence.</p>
+<pre class="prettyprint">//describe your code
+describe ( 'presentation.js' , function(){
+  
+  //what it should do
+  it ( 'should be informative', function(){
+      
+      //expect something 
+      expect( 
+          presentation.inform() 
+      ).toBeTruthy();
+  )};
+} );</pre>
+        <p>Note how <code class="prettyprint">describe + it</code> reads like a sentence.</p>
         <p>&nbsp</p>
     </section>
     
@@ -99,56 +101,126 @@
     <section class="slide">
         <h2><span class="red">Red</span></h2>
         <p>Spec</p>
-<pre><code data-language="javascript">expect( kata.fizzBuzz( 3 ) ).toEqual( 'Fizz' );</code></pre>
+<pre class="prettyprint">expect(kata.fizzBuzz(3)).toEqual('Fizz');</pre>
         <p>fizzBuzz.js</p>
-<pre><code data-language="javascript">var fizzBuzz : function( test ){
+<pre class="prettyprint">var fizzBuzz : function( test ){
     //nothing is here yet
-}</code></pre>
+}</pre>
     </section>
 
     <section class="slide">
         <h2><span class="green">Green</span></h2>
         <p>Spec</p>
-<pre><code data-language="javascript">expect( kata.fizzBuzz( 3 ) ).toEqual( 'Fizz' );</code></pre>
+<pre class="prettyprint">expect(kata.fizzBuzz(3)).toEqual('Fizz');</pre>
         <p>fizzBuzz.js</p>
-    <pre><code data-language="javascript">var fizzBuzz : function( test ){
+    <pre class="prettyprint">var fizzBuzz : function( test ){
     return "Fizz";
-}</code></pre>
+}</pre>
     </section>
 
     <section class="slide">
         <h2>Refactor</h2>
         <p>Spec</p>
-<pre><code data-language="javascript">expect( kata.fizzBuzz( 3 ) ).toEqual( 'Fizz' );
-expect( kata.fizzBuzz( 0 ) ).toEqual( '' );</code></pre>
+<pre class="prettyprint">expect(kata.fizzBuzz(3)).toEqual('Fizz');
+
+expect(kata.fizzBuzz(0)).toEqual( '' );</pre>
         <p>fizzBuzz.js</p>
-<pre><code data-language="javascript">var fizzBuzz : function( test ){
+<pre class="prettyprint">var fizzBuzz : function( test ){
     return "Fizz";
-}</code></pre>
+}</pre>
     </section>
 
     <section class="slide">
         <h2>Refactor</h2>
         <p>Spec</p>
-<pre><code data-language="javascript">expect( kata.fizzBuzz( 3 ) ).toEqual( 'Fizz' );
-expect( kata.fizzBuzz( 0 ) ).toEqual( '' );</code></pre>
+<pre class="prettyprint">expect(kata.fizzBuzz(3)).toEqual('Fizz');
+
+expect(kata.fizzBuzz(0)).toEqual( '' );</pre>
         <p>fizzBuzz.js</p>
-<pre><code data-language="javascript">var fizzBuzz : function( test ){
-    if ( test % 3 === 0 ){
-        return 'Fizz';
-    }
-    return '';
-}</code></pre>
+<pre class="prettyprint">var fizzBuzz : function( test ){
+  if ( test % 3 === 0 ){
+      return 'Fizz';
+  }
+  return '';
+}</pre>
     </section>
     
     <section class="slide">
         <div class="attn-box vcenter">
             <p class="vcenter">
-                Nobody actually has time for this but its a noble goal to shoot for!
+                Nobody actually has time for this, but its a noble goal to shoot for!
             </p>
         </div>
     </section>
     
+    <section class="slide">
+      <h1>Writing Testable JS Code</h1>
+    </section>
+
+    <section class="slide">
+      <h2>This is NOT testable</h2>
+<pre class="prettyprint">$(document).ready(function(){
+  var div1 = $('div.one'),
+      itemCount = getItemCount( 'li.item' );
+
+  div1.on('click',function(){
+    ...
+  });
+
+  function getItemCount( selector ){
+    return $( selector ).length;
+  }
+});</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Why not?</h2>
+      <ul>
+        <li>
+          All the code is hidden in the <code class="prettyprint">$(document).ready()</code> closure.
+        </li>
+        <li class="slide">
+          The event handler is anonymous function passed directly into the <strong>on</strong> function.
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Moar Testable</h2>
+<pre class="prettyprint">var app = {
+  init : function(){
+     div1.on('click', this.handleDivClick);
+     this.itemCount = this.getItemCount( 'li.item' );
+  },
+
+  getItemCount : function( selector ){
+    return $( selector ).length;
+  },
+
+  handleDivClick : function( e ){
+    //this in here will still be div1
+  }
+};
+
+$(document).ready(function(){
+  app.init();
+});</pre>
+    </section>
+
+    <section class="slide">
+      <h2>We have testable stuff now</h2>
+      <ul>
+        <li>init set the click handler</li>
+        <li class="slide">init set the item count</li>
+        <li class="slide">getItemCount() returns what we expect</li>
+        <li class="slide">handleDivClick() does what we want</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h1>Setup</h1>
+    </section>
+
     <section class="slide">
         <h2>Setup</h2>
         <ol>
@@ -159,7 +231,213 @@ expect( kata.fizzBuzz( 0 ) ).toEqual( '' );</code></pre>
             <li>Open SpecRunner.html in a browser.</li>
         </ol>
     </section>
+
+    <section class="slide">
+        <h2>Folder Structure</h2>
+<pre>js
+|--tests
+|  |--fixtures
+|  |--spec
+SpecRunner.html
+</pre>
+    </section>
+
+    <section class="slide">
+        <h2>SpecRunner.html</h2>
+<pre class="prettyprint">&lt;!-- include source files here... --&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;src/Player.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;src/Song.js&quot;&gt;&lt;/script&gt;
+
+  &lt;!-- include spec files here... --&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;spec/SpecHelper.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;spec/PlayerSpec.js&quot;&gt;&lt;/script&gt;</pre>
+    </section>
+
+    <section class="slide">
+      <h1>Specs</h1>
+    </section>
     
+    <section class="slide">
+        <h2>Specs</h2>
+<pre class="prettyprint">describe('fizzbuzz'){
+
+  it(
+    'should return fizz when the number is divisible by 3',
+    function(){
+
+      expect(
+        kata.fizzBuzz(3)
+      ).toEqual('Fizz'); //matcher
+
+      expect(
+        kata.fizzBuzz(0)
+      ).toEqual( '' );
+  });
+  
+});</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Test Setup &amp; Teardown</h2>
+<pre class="prettyprint">
+beforeEach( function (){
+  //run before each "it"
+});
+
+afterEach( function (){
+  //run after each "it"
+});
+</pre>
+    </section>
+
+    <section class="slide">
+      <h1>Matchers</h1>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <pre class="pretyprint">toBe( 'exptected' ) //exact compare (===)</pre>
+      <pre class="pretyprint slide">toEqual( 'expected' ) //more general compare, can compare objects</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <pre class="pretyprint slide">toBeDefined( ) //checks if var is not undefined</pre>
+      <pre class="pretyprint">toBeUndefined( ) //checks for undefined</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <pre class="pretyprint">toMatch( /regex/ ) //matches against regex</pre>
+      <pre class="pretyprint slide">toBeNull( /regex/ ) //checks if a var is null</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <pre class="pretyprint">toBeTruthy( ) //checks if var is truthy</pre>
+      <pre class="pretyprint slide">toBeFalsy( ) //checks if var is falsy</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <pre class="pretyprint">toBeLessThan( number ) //checks if value is less than number</pre>
+      <pre class="pretyprint slide">toBeGreaterThan( number ) //checks if value is greater than number</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <pre class="pretyprint">toContain( item ) //look for item in array</pre>
+      <pre class="pretyprint slide">expect( function(){ fn(); }).toThrow( e ) //fn() should throw an error</pre>
+    </section>
+
+    <section class="slide">
+      <h1>Jasmine jQuery</h1>
+    </section>
+
+    <section class="slide">
+      <h2>Jasmine jQuery</h2>
+      <p>Jasmine jQuery is a set of matchers and functions that help you test DOM elements.</p>
+    </section>
+
+    <section class="slide">
+      <h1>jQuery Matchers</h1>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <pre class="pretyprint">toBe( jQuerySelector ) //compares results of one selector to another</pre>
+      <pre class="pretyprint slide">toBeChecked( ) //radios and checkboxes</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <pre class="pretyprint">toBeHidden( ) //display:none, hidden form elements, with & height = 0</pre>
+      <pre class="pretyprint slide">toBeVisible( ) //checks for element to consume space on the document</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <pre class="pretyprint">toBeSelected( ) //only for elements with selected attribute</pre>
+      <pre class="pretyprint slide">toHaveCss( css ) //pass in css like calling the jQuery css() fn</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <pre class="pretyprint">toHaveAttr( attrName, attrValue ) //checks for attribute on element</pre>
+      <pre class="pretyprint slide">toConatin( jQuerySelecte ) //checks if selector is in children</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <pre class="pretyprint">toHaveValue( value ) //checks if element has the value</pre>
+      <pre class="pretyprint slide">toHaveText( text ) //checks if element has text</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <pre class="pretyprint">toHaveId( id ) //checks if element has id</pre>
+      <pre class="pretyprint slide">toHaveHtml( html ) //checks if element has html</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <pre class="pretyprint">toHandle( eventname ) //checks if element listens for event</pre>
+      <pre class="pretyprint slide">toBeFocused( ) //checks if element has focus</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Matchers</h2>
+      <h4>For a full list visit <a href="https://github.com/velesin/jasmine-jquery" target="_blank">https://github.com/velesin/jasmine-jquery</a></h4>
+    </section>
+    
+    <section class="slide">
+      <h1>Fixtures</h1>
+    </section>
+
+    <section class="slide">
+      <h2>Fixtures</h2>
+      <p>Fixtures are static HTML pages that are loaded before each test.  This allows your jQuery code to have DOM elements to run against.</p>
+    </section>
+
+    <section class="slide">
+      <h2>Setting Up Fixtures</h2>
+      <p>Jasmine jQuery automatically gives you fixtures, however it assums that they are in the path:</p>
+<pre>spec/javascripts/fixtures</pre>
+    </section>    
+
+    <section class="slide">
+      <h2>Setting Up Fixtures</h2>
+      <p>This path can be overridden by adding the following code to the SpecRunner.html file:</p>
+<pre class="prettyprint">(function(){
+    //add this here
+    jasmine.getFixtures().fixturesPath = 'fixtures/'; 
+    
+    var jasmineEnv = jasmine.getEnv();
+
+    jasmineEnv.updateInterval = 1000;</pre>
+    </section>
+
+    <section class="slide">
+      <h2>Loading Fixtures</h2>
+<pre class="prettyprint"> beforeEach( function(){
+    //fixture will be reset before each test
+    loadFixtures( 'appFixture.html');
+  } );
+</pre>
+    </section>
+
+    <section class="slide">
+      <h1>Mocking &amp; Stubbing</h1>
+    </section>
+
+    <section class="slide">
+      <h2>Jasmine Spies</h2>
+<pre class="prettyprint"> beforeEach( function(){
+    //fixture will be reset before each test
+    loadFixtures( 'appFixture.html');
+  } );
+</pre>
+    </section>
     <!-- End slides. -->
     
     
@@ -203,14 +481,12 @@ expect( kata.fizzBuzz( 0 ) ).toEqual( '' );</code></pre>
     <script src="extensions/navigation/deck.navigation.js"></script>
     <script src="extensions/scale/deck.scale.js"></script>
     
-    <script src="rainbow/js/rainbow.min.js"></script>
-    <script src="rainbow/js/language/generic.js"></script>
-        <script src="rainbow/js/language/javascript.js"></script>
-        <script src="rainbow/js/language/html.js"></script>
+    <script type="text/javascript" src="google-code-prettify/src/prettify.js"></script>
         
     <!-- Initialize the deck. You can put this in an external file if desired. -->
     <script>
         $(function() {
+            prettyPrint();
             $.deck('.slide');
         });
     </script>
