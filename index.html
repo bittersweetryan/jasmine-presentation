@@ -46,13 +46,13 @@
             <li>Jasmine Matchers</li>
             <li>Jasmine jQuery</li>
             <li>Fixtures</li>
-            <li>Introducing Sinon.js</li>
-            <li>Mocking / Stubbing / Fake AJAX</li>
+            <li>Runs / Waits</li>
+            <li>Spies</li>
         </ul>
     </section> 
     
     <section class="slide">
-        <h2>Intro to BDD (Behavior Driven Design)</h2>
+        <h2>Intro to BDD (Behavior Driven Development)</h2>
         <h3>In a BDD style test you <strong>describe</strong> your code and tell the test what <strong>it</strong> should be doing.  Then you <strong>expect</strong> your code to do something.</h3>
     </section>
         
@@ -76,15 +76,15 @@ describe ( 'presentation.js' , function(){
     
     <section class="slide">
         <h2><span class="red">Red</span> <span class="green">Green</span> Refactor (TDD)</h2>
-        <p>TDD &amp; BDD go together like JavaScript and hipsters.</p>
-        <p>The key concept is to write your test first, describe the behavior of your code before you write the code.</p>
+        <p>TDD &amp; BDD go together like coffee shops and hipsters.</p>
+        <p>The key concept is to write your unit test before you write a line of implementation code.</p>
         <p>
-            Writing code this way can help you: 
+            Writing code this way helps you: 
         </p>
         <ul>
-            <li>have less of a chance for false positives</li>
+            <li>have less chance for false positives</li>
             <li>write a more expressive API</li>
-            <li>only expose the methods that need exposing</li>
+            <li>only what the code that needs to be written</li>
         </ul>
     </section>
         
@@ -93,15 +93,28 @@ describe ( 'presentation.js' , function(){
         <p>A true TDD purist will tell you to follow the following path to testing enlightenment:</p>
         <ol>
             <li>Write a failing test.</li>
-            <li>Make the test pass as <strong>easily</strong> as possiable.</li>
+            <li>Make the test pass as <strong>easily</strong> as possible.</li>
             <li>Try to break the test.</li>
         </ol>
     </section>
-        
+    
+    <section class="slide">
+        <h2>FizzBuzz</h2>
+        <p>Lets take a look at a simple FizzBuzz example to so you what this looks like.</p>
+        <p>What is FizzBuzz?</p>
+        <ul>
+            <li class="slide">FizzBuzz is a common coding exercise in job interviews.</li>
+            <li class="slide">If a number is divisible by 3 return "Fizz".</li>
+            <li class="slide">If a number is divisible by 5 return "Buzz".</li>
+            <li class="slide">If a number is divisible by 3 and 5 return "FizzBuzz".</li>
+        </ul>
+    </section>
+    
     <section class="slide">
         <h2><span class="red">Red</span></h2>
         <p>Spec</p>
-<pre class="prettyprint">expect(kata.fizzBuzz(3)).toEqual('Fizz');</pre>
+<pre class="prettyprint">expect( kata.fizzBuzz( 3 ) )
+    .toEqual( 'Fizz' );</pre>
         <p>fizzBuzz.js</p>
 <pre class="prettyprint">var fizzBuzz : function( test ){
     //nothing is here yet
@@ -110,6 +123,7 @@ describe ( 'presentation.js' , function(){
 
     <section class="slide">
         <h2><span class="green">Green</span></h2>
+        <p>The simplest implementation.</p>
         <p>Spec</p>
 <pre class="prettyprint">expect(kata.fizzBuzz(3)).toEqual('Fizz');</pre>
         <p>fizzBuzz.js</p>
@@ -189,8 +203,12 @@ expect(kata.fizzBuzz(0)).toEqual( '' );</pre>
       <h2>Moar Testable</h2>
 <pre class="prettyprint">var app = {
   init : function(){
-     div1.on('click', this.handleDivClick);
-     this.itemCount = this.getItemCount( 'li.item' );
+     div1.on(
+        'click', this.handleDivClick
+     );
+
+     this.itemCount = 
+        this.getItemCount( 'li.item' );
   },
 
   getItemCount : function( selector ){
@@ -200,23 +218,25 @@ expect(kata.fizzBuzz(0)).toEqual( '' );</pre>
   handleDivClick : function( e ){
     //this in here will still be div1
   }
-};
-
-$(document).ready(function(){
-  app.init();
-});</pre>
+};</pre>
     </section>
 
     <section class="slide">
-      <h2>We have testable stuff now</h2>
+      <h2>Moar Testable</h2>
+      <p>Now we can test our code to make sure:</p>
       <ul>
         <li>init set the click handler</li>
-        <li class="slide">init set the item count</li>
-        <li class="slide">getItemCount() returns what we expect</li>
-        <li class="slide">handleDivClick() does what we want</li>
+        <li>init set the item count</li>
+        <li>getItemCount() returns what we expect</li>
+        <li>handleDivClick() does what we want</li>
       </ul>
+        <p>Rebecca Murphey has an excellent presentation on "Writing Testable JavaScript" here: <a href="http://www.youtube.com/watch?v=OzjogCFO4Zo" target="_blank">http://www.youtube.com/watch?v=OzjogCFO4Zo</a></p>
     </section>
-
+    
+    <section class="slide">
+      <h1>Jasmine, so much more than a shrub.</h1>
+    </section>
+    
     <section class="slide">
       <h1>Setup</h1>
     </section>
@@ -245,16 +265,49 @@ SpecRunner.html
     <section class="slide">
         <h2>SpecRunner.html</h2>
 <pre class="prettyprint">&lt;!-- include source files here... --&gt;
-  &lt;script type=&quot;text/javascript&quot; src=&quot;src/Player.js&quot;&gt;&lt;/script&gt;
-  &lt;script type=&quot;text/javascript&quot; src=&quot;src/Song.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; 
+    src=&quot;src/Player.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; 
+    src=&quot;src/Song.js&quot;&gt;&lt;/script&gt;
 
-  &lt;!-- include spec files here... --&gt;
-  &lt;script type=&quot;text/javascript&quot; src=&quot;spec/SpecHelper.js&quot;&gt;&lt;/script&gt;
-  &lt;script type=&quot;text/javascript&quot; src=&quot;spec/PlayerSpec.js&quot;&gt;&lt;/script&gt;</pre>
+&lt;!-- include spec files here... --&gt;
+&lt;script type=&quot;text/javascript&quot; 
+    src=&quot;spec/SpecHelper.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; 
+    src=&quot;spec/PlayerSpec.js&quot;&gt;&lt;/script&gt;</pre>
     </section>
-
+    
+    <section class="slide">
+        <h2>Failing Test Output</h2>        
+        <img src="images/failingTest.png">
+        
+    </section>
+    
+    <section class="slide">
+        <h2>Failing Test Output</h2>
+        <p style="text-align:left">To show all tests click on the "5 Specs" text.</p>
+        <img src="images/failingTestShowAll.png">
+        <p style="text-align:left">This is helpful when you have a lot of tests and you want to only run the "Describe" that has a failing test.</p>
+    </section>
+    
+    <section class="slide">
+        <h2>Passing Test Output</h2>
+        <div class="vcenter">
+            <img src="images/passingTest.png">
+        </div>
+    </section>
+    
     <section class="slide">
       <h1>Specs</h1>
+    </section>
+    
+    <section class="slide">
+        <h2>Specs</h2>
+        <ul>
+            <li>Spec files are where your tests live.</li>
+            <li>Typically a single spec will be written for each .js file in your app.</li>
+            <li><strong class="red">Describe</strong> blocks can be nested. As a rule of thumb I like to have nested <strong class="red">describe</strong> blocks when I have three or more <strong class="red">expect</strong> statements in an <strong class="red">it</strong> block.</li>
+        </ul>
     </section>
     
     <section class="slide">
@@ -296,38 +349,44 @@ afterEach( function (){
 
     <section class="slide">
       <h2>Matchers</h2>
-      <pre class="pretyprint">toBe( 'exptected' ) //exact compare (===)</pre>
-      <pre class="pretyprint slide">toEqual( 'expected' ) //more general compare, can compare objects</pre>
+      <pre class="prettyprint">toBe( 'expected' ) //exact compare (===)</pre>
+      <pre class="prettyprint slide">toEqual( 'expected' ) //more general compare, can compare objects</pre>
     </section>
 
     <section class="slide">
       <h2>Matchers</h2>
-      <pre class="pretyprint slide">toBeDefined( ) //checks if var is not undefined</pre>
-      <pre class="pretyprint">toBeUndefined( ) //checks for undefined</pre>
+      <pre class="prettyprint">toBeUndefined( ) //checks for undefined</pre>
+        <pre class="prettyprint slide">toBeDefined( ) //checks if var is not undefined</pre>
     </section>
 
     <section class="slide">
       <h2>Matchers</h2>
-      <pre class="pretyprint">toMatch( /regex/ ) //matches against regex</pre>
-      <pre class="pretyprint slide">toBeNull( /regex/ ) //checks if a var is null</pre>
+      <pre class="prettyprint">toMatch( /regex/ ) //matches against regex</pre>
+      <pre class="prettyprint slide">toBeNull( /regex/ ) //checks if a var is null</pre>
     </section>
 
     <section class="slide">
       <h2>Matchers</h2>
-      <pre class="pretyprint">toBeTruthy( ) //checks if var is truthy</pre>
-      <pre class="pretyprint slide">toBeFalsy( ) //checks if var is falsy</pre>
+      <pre class="prettyprint">toBeTruthy( ) //checks if var is truthy</pre>
+      <pre class="prettyprint slide">toBeFalsy( ) //checks if var is falsy</pre>
     </section>
 
     <section class="slide">
       <h2>Matchers</h2>
-      <pre class="pretyprint">toBeLessThan( number ) //checks if value is less than number</pre>
-      <pre class="pretyprint slide">toBeGreaterThan( number ) //checks if value is greater than number</pre>
+      <pre class="prettyprint">toBeLessThan( number ) //checks if value is less than number</pre>
+      <pre class="prettyprint slide">toBeGreaterThan( number ) //checks if value is greater than number</pre>
     </section>
 
     <section class="slide">
       <h2>Matchers</h2>
-      <pre class="pretyprint">toContain( item ) //look for item in array</pre>
-      <pre class="pretyprint slide">expect( function(){ fn(); }).toThrow( e ) //fn() should throw an error</pre>
+      <pre class="prettyprint">toContain( item ) //look for item in array</pre>
+      <pre class="prettyprint slide">expect( function(){ fn(); }).toThrow( e ) //fn() should throw an error</pre>
+    </section>
+    
+    <section class="slide">
+      <h2>not</h2>
+      <p>Any matcher can be "reversed" by including the <strong class="red">not</strong> keyword.</p>
+      <pre class="prettyprint slide">expect( 5 ).not.toEqual( 3 );</pre>
     </section>
 
     <section class="slide">
@@ -337,6 +396,10 @@ afterEach( function (){
     <section class="slide">
       <h2>Jasmine jQuery</h2>
       <p>Jasmine jQuery is a set of matchers and functions that help you test DOM elements.</p>
+        <ul>
+            <li>Download from <a href="https://github.com/velesin/jasmine-jquery" target="_blank">https://github.com/velesin/jasmine-jquery</a></li>
+            <li>Include it in your SpecRunner.html file, after Jasmine is loaded.</li>
+        </ul>
     </section>
 
     <section class="slide">
@@ -345,44 +408,44 @@ afterEach( function (){
 
     <section class="slide">
       <h2>Matchers</h2>
-      <pre class="pretyprint">toBe( jQuerySelector ) //compares results of one selector to another</pre>
-      <pre class="pretyprint slide">toBeChecked( ) //radios and checkboxes</pre>
+      <pre class="prettyprint">toBe( $('jQuerySelector') ) //compares results of one selector to another</pre>
+      <pre class="prettyprint slide">toBeChecked( ) //radios and checkboxes</pre>
     </section>
 
     <section class="slide">
       <h2>Matchers</h2>
-      <pre class="pretyprint">toBeHidden( ) //display:none, hidden form elements, with & height = 0</pre>
-      <pre class="pretyprint slide">toBeVisible( ) //checks for element to consume space on the document</pre>
+      <pre class="prettyprint">toBeHidden( ) //display:none, hidden form elements, with & height = 0</pre>
+      <pre class="prettyprint slide">toBeVisible( ) //checks for element to consume space on the document</pre>
     </section>
 
     <section class="slide">
       <h2>Matchers</h2>
-      <pre class="pretyprint">toBeSelected( ) //only for elements with selected attribute</pre>
-      <pre class="pretyprint slide">toHaveCss( css ) //pass in css like calling the jQuery css() fn</pre>
+      <pre class="prettyprint">toBeSelected( ) //only for elements with selected attribute</pre>
+      <pre class="prettyprint slide">toHaveCss( 'css' ) //pass in css like calling the jQuery css() fn</pre>
     </section>
 
     <section class="slide">
       <h2>Matchers</h2>
-      <pre class="pretyprint">toHaveAttr( attrName, attrValue ) //checks for attribute on element</pre>
-      <pre class="pretyprint slide">toConatin( jQuerySelecte ) //checks if selector is in children</pre>
+      <pre class="prettyprint">toHaveAttr( 'attrName', 'attrValue' ) //checks for attribute on element</pre>
+      <pre class="prettyprint slide">toConatin( $('jQuerySelector') ) //checks if selector is in children</pre>
     </section>
 
     <section class="slide">
       <h2>Matchers</h2>
-      <pre class="pretyprint">toHaveValue( value ) //checks if element has the value</pre>
-      <pre class="pretyprint slide">toHaveText( text ) //checks if element has text</pre>
+      <pre class="prettyprint">toHaveValue( value ) //checks if element has the value attribute equal to the value passed in</pre>
+      <pre class="prettyprint slide">toHaveText( 'text' ) //checks if element has text</pre>
     </section>
 
     <section class="slide">
       <h2>Matchers</h2>
-      <pre class="pretyprint">toHaveId( id ) //checks if element has id</pre>
-      <pre class="pretyprint slide">toHaveHtml( html ) //checks if element has html</pre>
+      <pre class="prettyprint">toHaveId( 'id' ) //checks if element has id</pre>
+      <pre class="prettyprint slide">toHaveHtml( 'html' ) //checks if element has html</pre>
     </section>
 
     <section class="slide">
       <h2>Matchers</h2>
-      <pre class="pretyprint">toHandle( eventname ) //checks if element listens for event</pre>
-      <pre class="pretyprint slide">toBeFocused( ) //checks if element has focus</pre>
+      <pre class="prettyprint">toHandle( 'eventname' ) //checks if element listens for event</pre>
+      <pre class="prettyprint slide">toBeFocused( ) //checks if element has focus</pre>
     </section>
 
     <section class="slide">
@@ -396,12 +459,16 @@ afterEach( function (){
 
     <section class="slide">
       <h2>Fixtures</h2>
-      <p>Fixtures are static HTML pages that are loaded before each test.  This allows your jQuery code to have DOM elements to run against.</p>
+      <ul>
+        <li>Jasmine jQuery provides a powerful api for injecting HTML content into your tests.</li>  
+        <li>This allows your jQuery code to have DOM elements to run against.</li>
+        <li>Fixtures are stored in separate HTML files.</li>
+      </ul>
     </section>
 
     <section class="slide">
       <h2>Setting Up Fixtures</h2>
-      <p>Jasmine jQuery automatically gives you fixtures, however it assums that they are in the path:</p>
+      <p>Jasmine jQuery assumes that they are in the path:</p>
 <pre>spec/javascripts/fixtures</pre>
     </section>    
 
@@ -409,8 +476,10 @@ afterEach( function (){
       <h2>Setting Up Fixtures</h2>
       <p>This path can be overridden by adding the following code to the SpecRunner.html file:</p>
 <pre class="prettyprint">(function(){
-    //add this here
-    jasmine.getFixtures().fixturesPath = 'fixtures/'; 
+    //this loads fixtures from a fixtures folder 
+    //relative to where SpecRunner.html lives
+    jasmine.getFixtures()
+        .fixturesPath = 'fixtures/'; 
     
     var jasmineEnv = jasmine.getEnv();
 
@@ -425,18 +494,112 @@ afterEach( function (){
   } );
 </pre>
     </section>
-
+    
     <section class="slide">
-      <h1>Mocking &amp; Stubbing</h1>
+        <h1>runs / waits</h1>
     </section>
 
     <section class="slide">
-      <h2>Jasmine Spies</h2>
-<pre class="prettyprint"> beforeEach( function(){
-    //fixture will be reset before each test
-    loadFixtures( 'appFixture.html');
-  } );
+      <h2>Runs / Waits</h2>
+      <p>What if you have code like this?</p>
+<pre class="prettyprint">hide : function(){
+    $('.hidden').slideDown(5000);
+}</pre>
+    </section>
+    
+    <section class="slide">
+      <h2>runs / waits</h2>
+      <p>Jasmine provides us with <strong class="red">runs</strong> and <strong class="red">waits</strong> functions for this:</p>
+<pre class="prettyprint">runs( function(){ myObject.hide() }); //technically doesn't have to be in runs, but it better describe the intent
+
+waits( 5100 );
+
+runs( function(){
+    expect( $('.hidden') ).not.toBeVisible();
+});
 </pre>
+    </section>
+    
+    <section class="slide">
+        <h2>runs / waits</h2>
+        <p>When you have runs / waits functions Jasmine <strong class="red">runs</strong> the first function, <strong class="red">waits</strong> the duration of the waits function call, then calls the next <strong class="red">runs</strong> function.</p>
+        <p>Good for jQuery animations, setTimeouts, setIntervals, or any other asynchronous and timed code.</p>
+    </section>
+    
+    <section class="slide">
+      <h1>Spies</h1>
+    </section>
+
+    <section class="slide">
+        <h2>Spies</h2>
+        <p>Spies are utilities provided by jasmine to make sure a callback function has been called.</p>
+        <p>The following code is a good canidate for a spy:</p>
+<pre class="prettyprint">hide : function(){
+    var $ele = $('.hideMe'),
+        self = this;
+
+    $ele.fadeOut( function(){
+        self.showOtherDiv
+    });
+}
+</pre>
+    </section>
+    
+    <section class="slide">
+        <h2>Spies</h2>
+        <p>To use it we tell Jasmine to <strong class="red">spyOn</strong> something. By default they are similar to mocks in other unit testing frameworks.</p>
+<pre class="prettyprint">it('must call the success callback', 
+    function(){
+        //overwrites showOtherDiv with the spy
+        spyOn( myObj, 'showOtherDiv' ); 
+
+        expect( myObj.showOtherDiv )
+            .toHaveBeenCalled(); 
+    }
+);
+</pre>
+    </section>
+    
+    <section class="slide">
+        <h2>Spy Matchers</h2>
+<pre class="prettyprint">expect( myObj.showOtherDiv ).toHaveBeenCalled(); 
+//validates that the method was called</pre>        
+<pre class="prettyprint slide">expect( myObj.showOtherDiv )
+    .toHaveBeenCalledWith( args );
+//validates that the method was called with specific arguments</pre>        
+    </section>
+    
+    <section class="slide">
+        <h2>Spy Metadata</h2>
+        <ul>
+            <li>Spies have metadata that can be used in tests</li>
+        </ul>
+<pre class="prettyprint">myObj.showOtherDiv.calls.length //number of times called</pre>
+<pre class="prettyprint">expect( myObj.showOtherDiv.calls.length )
+    .toEqual(2)</pre>
+</section>
+<section class="slide">
+    <h2>Spy Metadata</h2>
+<pre class="prettyprint">myObj.showOtherDiv.calls //array of calls</pre>
+<pre class="prettyprint slide">myObj.showOtherDiv.calls[0].args //array of args</pre>
+<pre class="prettyprint slide">myObj.showOtherDiv.mostRecentCall //get last call, has same metadata as other calls</pre>    
+    </section>
+    
+    <section class="slide">
+        <h2>Extending Spies</h2>
+        <p>Spies can be extended to make your tests more powerful.</p>
+<pre class="prettyprint slide">spyOn( myObj, 'populateData' )
+    .andCallThrough(); //will create the spy but also call the original function</pre>
+<pre class="prettyprint slide">spyOn( myObj, 'populateData' )
+    .andReturn( 'foobar' ); //simlar to a stub in other unit testing frameworks</pre>
+    </section>
+    
+    <section class="slide">
+        <h1>Questions?</h1>
+    </section>
+    
+    <section class="slide">
+        <h1>The End.</h1>
     </section>
     <!-- End slides. -->
     

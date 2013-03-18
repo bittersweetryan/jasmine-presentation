@@ -146,4 +146,10 @@ $green : #0c580c;
             font-size: 1.7em;
         }
     }
+            
+    strong{
+        &.red{
+            color: $red;
+        }    
+    }
 }
