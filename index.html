@@ -547,13 +547,29 @@ runs( function(){
     
     <section class="slide">
         <h2>Spies</h2>
-        <p>To use it we tell Jasmine to <strong class="red">spyOn</strong> something. By default they are similar to mocks in other unit testing frameworks.</p>
+        <p>To use it tell Jasmine to <strong class="red">spyOn</strong> something. By default they are similar to mocks in other unit testing frameworks.</p>
 <pre class="prettyprint">it('must call the success callback', 
     function(){
         //overwrites showOtherDiv with the spy
         spyOn( myObj, 'showOtherDiv' ); 
 
         expect( myObj.showOtherDiv )
+            .toHaveBeenCalled(); 
+    }
+);
+</pre>
+    </section>
+
+    <section class="slide">
+        <h2>Spies</h2>
+        <p>Spies can also be assigned to variables that can be passed into other functions by using the <code class="prettyprint">createSpy</code> function.</p>
+<pre class="prettyprint">it('must call the success callback', 
+    function(){
+        callbackSpy = createSpy();
+        
+        fnThatExpectsACallback( callbackSpy )
+        
+        expect( callbackSpy )
             .toHaveBeenCalled(); 
     }
 );
